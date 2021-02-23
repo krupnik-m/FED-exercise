@@ -5,7 +5,7 @@ import Page from 'src/components/Page';
 
 import { useStores } from '../../contexts';
 import textResources from '../../constants/textResources';
-import FavouriteVideos from './indexNew';
+import FavouriteVideos from './favouriteVideos';
 
 const useStyles = makeStyles(() => ({
   root: {

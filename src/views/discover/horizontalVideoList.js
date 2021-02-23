@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {
   Card,
   CardHeader, Divider,
-  GridList, GridListTile
+  GridList
 } from '@material-ui/core';
 import clsx from 'clsx';
 import VideoItem from '../../components/VideoItem';
@@ -22,18 +22,14 @@ const useStyles = makeStyles(theme => ({
   gridList: {
     width: '90vw',
     flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)'
   },
   title: {
     color: theme.palette.primary.light
   },
-  gridItem: {
-    width: '160'
-  },
   video: {
-    width: '160',
-    height: 'auto'
+    width: 'auto',
+    height: '100%'
   },
   titleBar: {
     background:
@@ -41,24 +37,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const HorizontalVideoList = ({ className, videos, ...rest }) => {
+const HorizontalVideoList = ({
+  className, title, videos, ...rest
+}) => {
   const classes = useStyles();
-  console.log('videos', videos);
   const { videoStore } = useStores();
 
   return (
     <Card className={clsx(classes.root, className)} {...rest}>
-      <CardHeader title="List of Liked Videos" />
+      <CardHeader title={title} />
       <Divider />
       <GridList className={classes.gridList}>
         {videos.length > 0 && videos.map((video) => (
-          <GridListTile className={classes.gridItem} key={video.id}>
-            <VideoItem
-              className={classes.video}
-              onFavourite={() => videoStore.setFavourite(video.id)}
-              video={video}
-            />
-          </GridListTile>
+          <VideoItem
+            key={video.id}
+            className={classes.video}
+            onFavourite={() => videoStore.setFavourite(video.id)}
+            video={video}
+          />
         ))}
       </GridList>
 
@@ -68,6 +64,7 @@ const HorizontalVideoList = ({ className, videos, ...rest }) => {
 
 HorizontalVideoList.propTypes = {
   className: PropTypes.string,
+  title: PropTypes.string,
   videos: PropTypes.array.isRequired
 };
 

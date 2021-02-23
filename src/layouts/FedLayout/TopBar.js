@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import Logo from 'src/components/Logo';
 import NavItem from './NavItem';
+import CurrentTime from '../../components/CurrentTime';
 
 const useStyles = makeStyles({
   root: {},
@@ -62,6 +63,8 @@ const TopBar = ({ className, ...rest }) => {
             ))}
           </List>
         </Box>
+
+        <CurrentTime />
       </Toolbar>
     </AppBar>
   );

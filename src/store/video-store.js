@@ -25,6 +25,24 @@ export default class VideoStore {
     }
 
     /**
+   * Sorted video's list by like's amount
+   * @returns {[]}
+   */
+    get trendingVideos() {
+      return this.videos.slice().sort((a, b) => (b.like - a.like));
+    }
+
+    /**
+   * Sorted video's list by created date
+   * @returns {[]}
+   */
+    get latestVideos() {
+      return this.videos.slice().sort(
+        (a, b) => (a.createdAt - b.createdAt)
+      );
+    }
+
+    /**
    * Getting video list from local storage
    * If there has not got any data,
    * than set default data from constants data
@@ -32,11 +50,13 @@ export default class VideoStore {
     getVideos() {
       const value = localStorage.getItem(fedVideos);
       if (value !== null) {
-        this.videos = JSON.parse(value);
+        const data = JSON.parse(value);
+        this.videos = data.map(
+          item => ({ ...item, createdAt: new Date(item.createdAt) })
+        );
       } else {
         this.setInitData();
       }
-      console.log('videoId', this.videos);
     }
 
     /**
@@ -55,11 +75,13 @@ export default class VideoStore {
    * Add favourite video id to the favourite list
    */
     setFavourite(videoId) {
-      console.log('-', videoId);
       this.videos = this.videos.map(video => {
         if (video.id === videoId) {
-          console.log('found', video, video.isFavourite, !video.isFavourite);
-          return { ...video, isFavourite: !video.isFavourite };
+          return {
+            ...video,
+            like: video.isFavourite ? (video.like - 1) : (video.like + 1),
+            isFavourite: !video.isFavourite
+          };
         }
 
         return video;
@@ -73,6 +95,8 @@ export default class VideoStore {
         videos: observable,
         allVideos: computed,
         favouriteVideos: computed,
+        trendingVideos: computed,
+        latestVideos: computed,
         getVideos: action,
         setInitData: action,
         setFavourite: action

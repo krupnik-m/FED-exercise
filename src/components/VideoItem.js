@@ -13,6 +13,10 @@ const useStyles = makeStyles(theme => ({
   title: {
     color: theme.palette.text.white,
   },
+  description: {
+    color: theme.palette.text.white,
+    fontSize: 10
+  },
   titleBar: {
     color: theme.palette.text.white,
     cursor: 'pointer',
@@ -22,6 +26,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     background:
       'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden'
   }
 }));
 
@@ -50,7 +57,6 @@ const VideoItem = ({
       </video>
       <p className={classes.titleBar}>
         <IconButton
-          className={classes.like}
           onClick={onFavourite}
           aria-label={`star ${video.title}`}
         >
@@ -59,6 +65,7 @@ const VideoItem = ({
           ) : (
             <FavoriteBorderIcon className={classes.title} />
           )}
+          <span className={classes.description}>{video.like}</span>
         </IconButton>
         {video.title}
       </p>

@@ -23,7 +23,7 @@ const text = textResources.discoverPage;
 const DiscoverView = observer(() => {
   const classes = useStyles();
   const { videoStore } = useStores();
-  const { allVideos } = videoStore;
+  const { allVideos, latestVideos, trendingVideos } = videoStore;
   const title = `${textResources.app.title} - ${textResources.navigation.discover}`;
 
   useEffect(() => {
@@ -49,13 +49,13 @@ const DiscoverView = observer(() => {
           <Grid item xs={12}>
             <HorizontalVideoList
               title={text.trendingVideo}
-              videos={allVideos}
+              videos={trendingVideos}
             />
           </Grid>
           <Grid item xs={12}>
             <HorizontalVideoList
               title={text.latestVideo}
-              videos={allVideos}
+              videos={latestVideos}
             />
           </Grid>
         </Grid>
