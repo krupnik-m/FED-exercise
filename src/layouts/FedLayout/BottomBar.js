@@ -21,7 +21,7 @@ const BottomBar = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="bottom" color="primary" className={classes.appBar}>
+    <AppBar color="primary" className={classes.appBar}>
       <Typography
         variant="caption"
         display="block"
