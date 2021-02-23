@@ -14,6 +14,7 @@
     }
   },
   "rules": {
+    "linebreak-style": ["error", "windows"],
     "arrow-parens": "off",
     "no-underscore-dangle": "off",
     "arrow-body-style": "off",
