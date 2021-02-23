@@ -18,10 +18,13 @@ import {
 } from '@material-ui/core';
 
 import { useStores } from '../../contexts';
+import textResources from '../../constants/textResources';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%'
+  },
+  scrollArea: {
+    maxHeight: '60vh'
   },
   actions: {
     justifyContent: 'flex-end'
@@ -38,9 +41,9 @@ const LikedVideos = ({ className, videos, ...rest }) => {
 
   return (
     <Card className={clsx(classes.root, className)} {...rest}>
-      <CardHeader title="List of Liked Videos" />
+      <CardHeader title={textResources.mainPage.likedVideos} />
       <Divider />
-      <PerfectScrollbar>
+      <PerfectScrollbar className={classes.scrollArea}>
         <List className={classes.list}>
           {videos.map(video => (
             <ListItem key={video.id}>

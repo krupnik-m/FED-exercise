@@ -1,6 +1,4 @@
 import React from 'react';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { makeStyles } from '@material-ui/styles';
 import Slider from 'react-slick';
 
@@ -11,14 +9,23 @@ import { useStores } from '../../contexts';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import textResources from '../../constants/textResources';
+import VideoItem from '../../components/VideoItem';
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+  },
   video: {
     width: '100%'
   },
+  slider: {
+    backgroundColor: 'black',
+    marginBottom: theme.spacing(1),
+  },
   slide: {
-    position: 'relative'
+    position: 'relative',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   like: {
     cursor: 'pointer',
@@ -36,10 +43,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const text = textResources.mainPage;
+let slider = null;
+
 const AllVideos = ({ className, videos, ...rest }) => {
   const classes = useStyles();
   const { videoStore } = useStores();
-  let slider = null;
 
   const settings = {
     dots: false,
@@ -64,48 +73,26 @@ const AllVideos = ({ className, videos, ...rest }) => {
       {videos.length > 0 && (
         <>
           {/* eslint-disable-next-line no-return-assign */}
-          <Slider ref={c => (slider = c)} {...settings}>
+          <Slider className={classes.slider} ref={c => (slider = c)} {...settings}>
             {videos.map(video => (
               <div className={classes.slide} key={video.id}>
-                <video
+                <VideoItem
                   className={classes.video}
-                  poster={video.posterUrl}
-                  preload="true"
-                  controls
-                  loop
-                >
-                  <source src={video.videoUrl} type="video/mp4" />
-                  <track
-                    default
-                    kind="captions"
-                    srcLang="en"
-                    src={video.videoUrl}
-                    label={video.title}
-                  />
-                </video>
-                <h4 className={classes.videoTitle}>{video.title}</h4>
-                <div
-                  className={classes.like}
-                  onClick={() => videoStore.setFavourite(video.id)}
-                >
-                  {video.isFavourite ? (
-                    <FavoriteIcon />
-                  ) : (
-                    <FavoriteBorderIcon />
-                  )}
-                </div>
+                  onFavourite={() => videoStore.setFavourite(video.id)}
+                  video={video}
+                />
               </div>
             ))}
           </Slider>
           <Grid container justify="center" spacing={1} m={2}>
             <Grid item>
               <Button variant="outlined" color="primary" onClick={previous}>
-                Previous
+                {text.previous}
               </Button>
             </Grid>
             <Grid item>
               <Button variant="outlined" color="primary" onClick={next}>
-                Next
+                {text.next}
               </Button>
             </Grid>
           </Grid>

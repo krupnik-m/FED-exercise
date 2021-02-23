@@ -16,7 +16,7 @@ export const videoData = [
     id: uuid(),
     title: 'Green Lotus leaf with water drop as background.',
     posterUrl:
-      'poster="https://st4.depositphotos.com/24695572/26360/v/600/depositphotos_263605458-stock-video-green-lotus-leaf-with-water.jpg"',
+      'https://st4.depositphotos.com/24695572/26360/v/600/depositphotos_263605458-stock-video-green-lotus-leaf-with-water.jpg',
     videoUrl:
       'https://st4.depositphotos.com/24695572/26360/v/600/depositphotos_263605458-stock-video-green-lotus-leaf-with-water.mp4',
     like: 65,

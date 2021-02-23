@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 
+import textResources from '../../constants/textResources';
+
 const useStyles = makeStyles(theme => ({
   root: {},
   appBar: {
@@ -26,7 +28,7 @@ const BottomBar = () => {
         gutterBottom
         className={classes.text}
       >
-        Sorbet Exercise 2022
+        {textResources.app.footer}
       </Typography>
     </Box>
   );

@@ -6,6 +6,7 @@ import Page from 'src/components/Page';
 import LikedVideos from './likedVideos';
 import AllVideos from './allVideos';
 import { useStores } from '../../contexts';
+import textResources from '../../constants/textResources';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,13 +21,14 @@ const MainView = observer(() => {
   const classes = useStyles();
   const { videoStore } = useStores();
   const { allVideos, favouriteVideos } = videoStore;
+  const title = `${textResources.app.title} - ${textResources.navigation.main}`;
 
   useEffect(() => {
     videoStore.getVideos();
   }, []);
 
   return (
-    <Page className={classes.root} title="FED exercise">
+    <Page className={classes.root} title={title}>
       <Container maxWidth={false}>
         <Grid container spacing={3}>
           <Grid item sm={6} xs={12}>
