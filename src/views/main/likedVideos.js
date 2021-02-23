@@ -42,7 +42,7 @@ const LikedVideos = ({ className, videos, ...rest }) => {
       <Divider />
       <PerfectScrollbar>
         <List className={classes.list}>
-          {videos.map((video) => (
+          {videos.map(video => (
             <ListItem key={video.id}>
               <ListItemAvatar>
                 <FavoriteIcon />

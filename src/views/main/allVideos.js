@@ -1,5 +1,4 @@
 import React from 'react';
-import { Badge } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { makeStyles } from '@material-ui/styles';
@@ -7,32 +6,41 @@ import Slider from 'react-slick';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { Button, Grid } from '@material-ui/core';
 import { useStores } from '../../contexts';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const useStyles = makeStyles(() => ({
-  root: {
-  },
-  slide: {
-  },
+const useStyles = makeStyles(theme => ({
+  root: {},
   video: {
     width: '100%'
   },
-  badge: {
+  slide: {
+    position: 'relative'
+  },
+  like: {
     cursor: 'pointer',
-    '&::after': {
-      position: 'absolute',
-      top: '20px',
-      right: '20px'
-    }
+    position: 'absolute',
+    top: theme.spacing(1),
+    left: theme.spacing(1)
+  },
+  videoTitle: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: theme.spacing(1.5),
+    left: '0',
+    paddingLeft: theme.spacing(5),
+    color: theme.palette.text.primary
   }
 }));
 
 const AllVideos = ({ className, videos, ...rest }) => {
   const classes = useStyles();
   const { videoStore } = useStores();
+  let slider = null;
+
   const settings = {
     dots: false,
     infinite: true,
@@ -44,29 +52,26 @@ const AllVideos = ({ className, videos, ...rest }) => {
     arrows: false
   };
 
+  const next = () => {
+    slider.slickNext();
+  };
+
+  const previous = () => {
+    slider.slickPrev();
+  };
   return (
     <div className={clsx(classes.root, className)} {...rest}>
       {videos.length > 0 && (
-        <Slider {...settings}>
-          {videos.map(video => (
-            <div className={classes.slide} key={video.id}>
-              <h3>{video.title}</h3>
-              <Badge
-                className={classes.badge}
-                onClick={() => videoStore.setFavourite(video.id)}
-                overlap="rectangle"
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left'
-                }}
-                badgeContent={
-                  video.isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />
-                }
-              >
+        <>
+          {/* eslint-disable-next-line no-return-assign */}
+          <Slider ref={c => (slider = c)} {...settings}>
+            {videos.map(video => (
+              <div className={classes.slide} key={video.id}>
                 <video
                   className={classes.video}
                   poster={video.posterUrl}
                   preload="true"
+                  controls
                   loop
                 >
                   <source src={video.videoUrl} type="video/mp4" />
@@ -78,10 +83,33 @@ const AllVideos = ({ className, videos, ...rest }) => {
                     label={video.title}
                   />
                 </video>
-              </Badge>
-            </div>
-          ))}
-        </Slider>
+                <h4 className={classes.videoTitle}>{video.title}</h4>
+                <div
+                  className={classes.like}
+                  onClick={() => videoStore.setFavourite(video.id)}
+                >
+                  {video.isFavourite ? (
+                    <FavoriteIcon />
+                  ) : (
+                    <FavoriteBorderIcon />
+                  )}
+                </div>
+              </div>
+            ))}
+          </Slider>
+          <Grid container justify="center" spacing={1} m={2}>
+            <Grid item>
+              <Button variant="outlined" color="primary" onClick={previous}>
+                Previous
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant="outlined" color="primary" onClick={next}>
+                Next
+              </Button>
+            </Grid>
+          </Grid>
+        </>
       )}
     </div>
   );

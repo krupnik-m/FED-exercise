@@ -1,7 +1,7 @@
 import React from 'react';
-import { AppBar, makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {},
   appBar: {
     top: 'auto',
@@ -19,7 +19,7 @@ const BottomBar = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed" color="primary" className={classes.appBar}>
+    <Box color="primary" className={classes.appBar}>
       <Typography
         variant="caption"
         display="block"
@@ -28,7 +28,7 @@ const BottomBar = () => {
       >
         Sorbet Exercise 2022
       </Typography>
-    </AppBar>
+    </Box>
   );
 };
 
