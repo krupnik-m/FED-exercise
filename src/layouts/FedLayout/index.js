@@ -14,10 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
   wrapper: {
     display: 'flex',
-    flex: '1 1 auto',
     overflow: 'hidden',
-    paddingTop: 64,
-    height: 'calc(100vh - 140px)'
+    paddingTop: 64
   },
   contentContainer: {
     display: 'flex',

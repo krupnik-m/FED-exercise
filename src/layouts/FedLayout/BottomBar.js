@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { AppBar, makeStyles, Typography } from '@material-ui/core';
 
 import textResources from '../../constants/textResources';
 
@@ -21,7 +21,7 @@ const BottomBar = () => {
   const classes = useStyles();
 
   return (
-    <Box color="primary" className={classes.appBar}>
+    <AppBar position="bottom" color="primary" className={classes.appBar}>
       <Typography
         variant="caption"
         display="block"
@@ -30,7 +30,7 @@ const BottomBar = () => {
       >
         {textResources.app.footer}
       </Typography>
-    </Box>
+    </AppBar>
   );
 };
 
