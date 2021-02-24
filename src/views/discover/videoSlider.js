@@ -4,11 +4,11 @@ import Slider from 'react-slick';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useStores } from '../../contexts';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import VideoItem from '../../components/VideoItem';
+import videoStore from '../../store/app-store';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
 
 const VideoSlider = ({ className, videos, ...rest }) => {
   const classes = useStyles();
-  const { videoStore } = useStores();
 
   const settings = {
     dots: true,

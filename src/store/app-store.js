@@ -1,9 +1,5 @@
 import VideoStore from './video-store';
 
-export const createAppStore = () => {
-  return {
-    videoStore: new VideoStore()
-  };
-};
+export const videoStore = new VideoStore();
 
-export default createAppStore;
+export default videoStore;

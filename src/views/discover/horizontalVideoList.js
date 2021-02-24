@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import clsx from 'clsx';
 import VideoItem from '../../components/VideoItem';
-import { useStores } from '../../contexts';
+import videoStore from '../../store/app-store';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +41,6 @@ const HorizontalVideoList = ({
   className, title, videos, ...rest
 }) => {
   const classes = useStyles();
-  const { videoStore } = useStores();
 
   return (
     <Card className={clsx(classes.root, className)} {...rest}>

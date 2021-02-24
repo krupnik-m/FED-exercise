@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core';
 import { observer } from 'mobx-react-lite';
 import Page from 'src/components/Page';
 
-import { useStores } from '../../contexts';
 import textResources from '../../constants/textResources';
 import FavouriteVideos from './favouriteVideos';
+import videoStore from '../../store/app-store';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,7 +16,6 @@ const useStyles = makeStyles(() => ({
 
 const MainView = observer(() => {
   const classes = useStyles();
-  const { videoStore } = useStores();
   const { allVideos, favouriteVideos } = videoStore;
   const title = `${textResources.app.title} - ${textResources.navigation.main}`;
 
