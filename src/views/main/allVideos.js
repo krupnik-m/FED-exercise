@@ -5,12 +5,12 @@ import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Button, Grid } from '@material-ui/core';
-import { useStores } from '../../contexts';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import textResources from '../../constants/textResources';
 import VideoItem from '../../components/VideoItem';
+import videoStore from '../../store/app-store';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,7 +48,6 @@ let slider = null;
 
 const AllVideos = ({ className, videos, ...rest }) => {
   const classes = useStyles();
-  const { videoStore } = useStores();
 
   const settings = {
     dots: false,

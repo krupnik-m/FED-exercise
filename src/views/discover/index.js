@@ -3,10 +3,10 @@ import { Container, Grid, makeStyles } from '@material-ui/core';
 import { observer } from 'mobx-react-lite';
 
 import Page from 'src/components/Page';
-import { useStores } from '../../contexts';
 import VideoSlider from './videoSlider';
 import HorizontalVideoList from './horizontalVideoList';
 import textResources from '../../constants/textResources';
+import videoStore from '../../store/app-store';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,7 +22,6 @@ const text = textResources.discoverPage;
 
 const DiscoverView = observer(() => {
   const classes = useStyles();
-  const { videoStore } = useStores();
   const { allVideos, latestVideos, trendingVideos } = videoStore;
   const title = `${textResources.app.title} - ${textResources.navigation.discover}`;
 

@@ -6,10 +6,10 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import { useStores } from '../../contexts';
 import textResources from '../../constants/textResources';
 import AllVideos from './allVideos';
 import VideoItem from '../../components/VideoItem';
+import videoStore from '../../store/app-store';
 
 function TabPanel(props) {
   const {
@@ -77,7 +77,6 @@ const useStyles = makeStyles(theme => ({
 
 const FavouriteVideos = ({ allVideos, favouriteVideos }) => {
   const classes = useStyles();
-  const { videoStore } = useStores();
   const title = `${textResources.app.title} - ${textResources.navigation.main}`;
 
   const [value, setValue] = useState(0);
