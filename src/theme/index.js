@@ -17,7 +17,9 @@ const theme = createMuiTheme({
     },
     text: {
       primary: colors.blueGrey[900],
-      secondary: colors.blueGrey[600]
+      secondary: colors.blueGrey[600],
+      white: colors.common.white,
+      activeMenu: '#b2f897'
     }
   },
   shadows,

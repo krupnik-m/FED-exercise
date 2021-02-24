@@ -1,7 +1,9 @@
 import React from 'react';
 import { AppBar, makeStyles, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+import textResources from '../../constants/textResources';
+
+const useStyles = makeStyles(theme => ({
   root: {},
   appBar: {
     top: 'auto',
@@ -19,14 +21,14 @@ const BottomBar = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed" color="primary" className={classes.appBar}>
+    <AppBar color="primary" className={classes.appBar}>
       <Typography
         variant="caption"
         display="block"
         gutterBottom
         className={classes.text}
       >
-        Sorbet Exercise 2022
+        {textResources.app.footer}
       </Typography>
     </AppBar>
   );
